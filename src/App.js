@@ -14,9 +14,6 @@ function App() {
   };
   const [inputText, setInputText] = useState("");
   const [todos, setTodos] = useState(getTodosFromLocalStorage);
-  const saveLocalTodos = () => {
-    localStorage.setItem("todos", JSON.stringify(todos));
-  };
 
   const getLocalTodos = () => {
     const localTodos = localStorage.getItem("todos");
@@ -31,6 +28,10 @@ function App() {
   }, []);
 
   useEffect(() => {
+    const saveLocalTodos = () => {
+      localStorage.setItem("todos", JSON.stringify(todos));
+    };
+
     saveLocalTodos();
   }, [todos]);
 
