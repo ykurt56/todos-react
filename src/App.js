@@ -4,9 +4,16 @@ import Todolist from "./components/Todolist";
 import React, { useState, useEffect } from "react";
 
 function App() {
+  const getTodosFromLocalStorage = () => {
+    if (localStorage.getItem("todos") === null) {
+      localStorage.setItem("todos", JSON.stringify([]));
+    } else {
+      let localTodos = JSON.parse(localStorage.getItem("todos"));
+      return localTodos;
+    }
+  };
   const [inputText, setInputText] = useState("");
-  const [todos, setTodos] = useState([]);
-
+  const [todos, setTodos] = useState(getTodosFromLocalStorage);
   const saveLocalTodos = () => {
     localStorage.setItem("todos", JSON.stringify(todos));
   };
